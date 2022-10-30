@@ -5,7 +5,7 @@ A [Python](https://web.archive.org/web/20090209230321/http://wiki.forum.nokia.co
 * 4 preset scaling options and custom option
 * Doesn't modify the original JAR file, creates a temporary copy
 
-![](img/screenshot.png)
+![Screenshots of the drive selection, C drive contents, and scaling options](img/screenshot.png)
 
 The scaling doesn't use any smoothing filter, so for best results use 128x128 or 128x160 apps integer scaled to a 240x320 screen.
 
@@ -26,5 +26,5 @@ So far I've only been able to build on Windows.
 1. Install [Python 2.5](https://www.python.org/downloads/release/python-254/). 2.7 won't work because it's not bytecode compatible. Python doesn't provide Linux binaries so it would have to be manually compiled, I had issues with that.
 <!-- 2. Download Python for S60 [here](https://web.archive.org/web/20210506205822/https://garage.maemo.org/frs/download.php/7486/PythonForS60_2.0.0.tar.gz) and extract it to this directory. -->
 2. Install Python for S60 [here](https://web.archive.org/web/20200927123819/https://garage.maemo.org/frs/download.php/7485/PythonForS60_2.0.0_Setup.exe). For the installation directory, navigate to this folder and create a `PythonForS60` folder inside. After installing, the directory structure should look like this:
-![](img/install.png)
+![JavaResizer folder with a PythonForS60 folder inside, containing module repo, dependencies, etc.](img/install.png)
 3. Run `build.bat`.

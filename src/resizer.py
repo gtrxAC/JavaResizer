@@ -71,18 +71,19 @@ while True:
             else:
                 break
 
+        # If the folder is empty, the left softkey won't do anything
+        if not len(ls):
+            continue
+
         if len(cd):
-            if choice == 0:
-                cd.pop()
+            if cd[0] == "m":
+                name = msgpaths[choice]
+                break
             else:
-                if cd[0] == "m":
-                    name = msgpaths[choice - 1]
+                cd.append(str(ls[choice]))
+                if path.isfile('/'.join(cd)):
+                    name = '/'.join(cd)
                     break
-                else:
-                    cd.append(str(ls[choice]))
-                    if path.isfile('/'.join(cd)):
-                        name = '/'.join(cd)
-                        break
         else:
             if choice == 0:
                 cd.append("C:")
