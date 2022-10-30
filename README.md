@@ -10,9 +10,16 @@ A [Python](https://web.archive.org/web/20090209230321/http://wiki.forum.nokia.co
 The scaling doesn't use any smoothing filter, so for best results use 128x128 or 128x160 apps integer scaled to a 240x320 screen.
 
 # Installation
+Download PIPS, Python Runtime and JavaResizer SIS files from [GitHub](https://github.com/gtrxAC/JavaResizer/releases), [MEGA](https://mega.nz/folder/W5kmiTgR#adn6KNHKtCjlaWaMYNOBKQ) or [Google Drive](https://drive.google.com/drive/folders/1tCJ91m3OA5OndPLx4Pih4iNN1xnPKkHh?usp=sharing) and install them.
+
+# Support
 Currently only S60v3 Feature Pack 1 and above are supported. S60v5 and anything newer should work too, but are untested.
 
-Download PIPS and Python Runtime [here](https://mega.nz/folder/W5kmiTgR#adn6KNHKtCjlaWaMYNOBKQ) and JavaResizer [here](https://github.com/gtrxAC/JavaResizer/releases) and install them.
+Tested on the following devices:
+* Nokia E52 - working, but asks for access point when starting
+* Nokia N95 - working
+* Nokia E70 - not supported "make sure PIPS and Python runtime are installed"
+* Nokia N73 - not supported "make sure PIPS and Python runtime are installed"
 
 # Building
 So far I've only been able to build on Windows.
