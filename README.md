@@ -13,13 +13,15 @@ The scaling doesn't use any smoothing filter, so for best results use 128x128 or
 Download PIPS, Python Runtime and JavaResizer SIS files from [GitHub](https://github.com/gtrxAC/JavaResizer/releases), [MEGA](https://mega.nz/folder/W5kmiTgR#adn6KNHKtCjlaWaMYNOBKQ) or [Google Drive](https://drive.google.com/drive/folders/1tCJ91m3OA5OndPLx4Pih4iNN1xnPKkHh?usp=sharing) and install them.
 
 # Support
-Currently only S60v3 Feature Pack 1 and above are supported. S60v5 and anything newer should work too, but are untested.
+Currently only S60v3 Feature Pack 1 and 2 are supported. S60v5 and anything newer should work too, but are untested.
 
 Tested on the following devices:
 * Nokia E52 - working, but asks for access point when starting
 * Nokia N95 - working
 * Nokia E70 - not supported "make sure PIPS and Python runtime are installed"
 * Nokia N73 - not supported "make sure PIPS and Python runtime are installed"
+* Nokia C5 - working, thanks RostiTheGamer!
+* Nokia 6210 Navigator - working, thanks geodec29!
 
 # Building
 So far I've only been able to build on Windows.
