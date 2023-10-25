@@ -1,6 +1,5 @@
 import appuifw
 import zipfile
-import shutil
 import sysinfo
 import os
 from os import path
@@ -28,6 +27,28 @@ def findfile(folder, file_extension):
             stack.pop()
     return p
 
+# Case insensitive sort function, used for sorting directory listings
+def sort_case_insensitive(a, b):
+    a = a.lower()
+    b = b.lower()
+    if (a > b):
+        return 1
+    elif (a < b):
+        return -1
+    return 0
+
+# Remove a directory along with its contents, without using shutil or os.walk
+# (neither are available in Python 2.2)
+def remove_directory(d):
+    if path.exists(d):
+        for item in os.listdir(d):
+            item_path = path.join(d, item)
+            if path.isfile(item_path):
+                os.remove(item_path)
+            elif path.isdir(item_path):
+                remove_directory(item_path)
+        os.rmdir(d)
+
 while True:
     # File picker UI.
     cd = []  # Current directory stack, for example ["E:", "Games", "J2ME"]
@@ -43,11 +64,14 @@ while True:
                     # The full paths are saved in "msgpaths" and the directory listing only shows
                     # the filenames. When selecting a file name, the full path is looked up from the
                     # "msgpaths" list.
-                    msgpaths = sorted(findfile("C:/Private/1000484b/Mail2", ".jar"))
+                    msgpaths = findfile("C:/Private/1000484b/Mail2", ".jar")
+                    msgpaths.sort(sort_case_insensitive)
                     for i in msgpaths:
                         ls.append(unicode(path.basename(i)))
                 else:
-                    for i in sorted(os.listdir('/'.join(cd))):
+                    found = os.listdir('/'.join(cd))
+                    found.sort(sort_case_insensitive)
+                    for i in found:
                         if path.isdir('/'.join(cd) + '/' + i) or i.lower().endswith('.jar'):
                             ls.append(unicode(i))
             except:
@@ -190,7 +214,7 @@ while True:
 
     # Delete temp files
     try:
-        shutil.rmtree("D:/JavaResizer")
+        remove_directory("D:\\JavaResizer")
     except:
         pass
 

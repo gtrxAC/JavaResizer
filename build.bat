@@ -1,4 +1,3 @@
 @echo off
-cd PythonForS60
-C:/Python25/python.exe ensymble.py py2sis --appname=JavaResizer --version 1.2.1 --icon=../img/resizer.svg --caption=JavaResizer --shortcaption=Resizer --vendor=gtrxAC ../src/resizer.py ..
-cd ..
+set PATH=%PATH%;%CD%
+C:/Python22/python.exe ensymble_python2.2-0.27.py py2sis --appname=JavaResizer --version 1.3.0 --icon=img/resizer.svg --caption=JavaResizer --vendor=gtrxAC src/resizer.py .

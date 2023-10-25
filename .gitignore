@@ -1,3 +1,7 @@
-PythonForS60/
 debug.txt
 *.sis
+
+# Build dependencies
+ensymble*.py
+*.dll
+openssl.exe
