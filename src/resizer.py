@@ -2,7 +2,7 @@ import appuifw
 import zipfile
 import sysinfo
 import os
-from os import path
+import e32
 
 # The menu will have graphical glitches if using the default "large" screen size
 appuifw.app.screen = 'normal'
@@ -16,11 +16,11 @@ def findfile(folder, file_extension):
         folder, names = stack[-1]
         while names:
             name = names.pop()
-            pth = path.join(folder, name)
-            if path.isfile(pth):
+            pth = os.path.join(folder, name)
+            if os.path.isfile(pth):
                 if name.lower().endswith(file_extension):
                     p.append(pth)
-            elif path.isdir(pth):
+            elif os.path.isdir(pth):
                 stack.append((pth, os.listdir(pth)))
                 break
         else:
@@ -40,12 +40,12 @@ def sort_case_insensitive(a, b):
 # Remove a directory along with its contents, without using shutil or os.walk
 # (neither are available in Python 2.2)
 def remove_directory(d):
-    if path.exists(d):
+    if os.path.exists(d):
         for item in os.listdir(d):
-            item_path = path.join(d, item)
-            if path.isfile(item_path):
+            item_path = os.path.join(d, item)
+            if os.path.isfile(item_path):
                 os.remove(item_path)
-            elif path.isdir(item_path):
+            elif os.path.isdir(item_path):
                 remove_directory(item_path)
         os.rmdir(d)
 
@@ -67,21 +67,19 @@ while True:
                     msgpaths = findfile("C:/Private/1000484b/Mail2", ".jar")
                     msgpaths.sort(sort_case_insensitive)
                     for i in msgpaths:
-                        ls.append(unicode(path.basename(i)))
+                        ls.append(unicode(os.path.basename(i)))
                 else:
                     found = os.listdir('/'.join(cd))
                     found.sort(sort_case_insensitive)
                     for i in found:
-                        if path.isdir('/'.join(cd) + '/' + i) or i.lower().endswith('.jar'):
+                        if os.path.isdir('/'.join(cd) + '/' + i) or i.lower().endswith('.jar'):
                             ls.append(unicode(i))
             except:
                 appuifw.note(u"Error reading directory", "error")
                 cd.pop()
                 continue
         else:
-            ls.append(u"C:")
-            ls.append(u"D:")
-            ls.append(u"E:")
+            ls.extend(e32.drive_list())
             ls.append(u"Messaging")
             ls.append(u"About")
 
@@ -105,20 +103,18 @@ while True:
                 break
             else:
                 cd.append(str(ls[choice]))
-                if path.isfile('/'.join(cd)):
+                if os.path.isfile('/'.join(cd)):
                     name = '/'.join(cd)
                     break
         else:
-            if choice == 0:
-                cd.append("C:")
-            elif choice == 1:
-                cd.append("D:")
-            elif choice == 2:
-                cd.append("E:")
-            elif choice == 3:
+            drives_list = e32.drive_list()
+
+            if choice == (len(ls) - 2):
                 cd.append("m")
-            else:
+            elif choice == (len(ls) - 1):
                 appuifw.note(u"JavaResizer: scale old J2ME games to run on your S60 device!\ngithub.com/gtrxAC")
+            else:
+                cd.append(drives_list[choice])
             
     if name == None:
         break
@@ -185,7 +181,7 @@ while True:
             try:
                 extracted = open("D:/JavaResizer/" + i, "wb")
             except:
-                os.makedirs(path.dirname("D:/JavaResizer/" + i))
+                os.makedirs(os.path.dirname("D:/JavaResizer/" + i))
                 extracted = open("D:/JavaResizer/" + i, "wb")
             
             extracted.write(z.read(i))
